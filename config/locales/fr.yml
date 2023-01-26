@@ -7,8 +7,11 @@ fr:
     new_store: Nouvelle Boutique
     domains: Domaines
     stores_admin: "Boutiques & Domaines"
-    manage_stores: Configurer les boutiques et les domaines associés
+    manage_stores: "Configurer les boutiques et les domaines associés"
     editing_store: Modifier une boutique
-    default: Defaut
+    default: Par defaut
     store_name: Nom
     store_code: Code
+    back_to_store_list: Retour aux boutiques
+    default_currency: Devise par default
+

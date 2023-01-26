@@ -14,15 +14,11 @@ module SolidusMultiDomain
 
           has_and_belongs_to_many :promotion_rules, class_name: 'Spree::Promotion::Rules::Store', join_table: 'spree_promotion_rules_stores', association_foreign_key: 'promotion_rule_id'
 
-          has_attached_file :logo,
-            styles: { mini: '48x48>', small: '100x100>', medium: '250x250>' },
-            default_style: :medium,
-            url: '/spree/stores/:id/:style/:basename.:extension',
-            path: ':rails_root/public/spree/stores/:id/:style/:basename.:extension',
-            convert_options: { all: '-strip -auto-orient' }
+          has_one_attached :logo
+          validates :logo, presence: true, if: -> { respond_to?(:logo_file_name) }
 
-          validates_attachment_file_name :logo, matches: [/png\Z/i, /jpe?g\Z/i],
-                                                if: -> { respond_to?(:logo_file_name) }
+          # validates_attachment_file_name :logo, matches: [/png\Z/i, /jpe?g\Z/i],
+          #                                       if: -> { respond_to?(:logo_file_name) }
         end
       end
 

@@ -34,12 +34,14 @@
     <% end %>
   </div>
 
-  <div class="four columns">
-    <%= f.field_container :default_currency do %>
-      <%= f.label :default_currency, I18n.t('spree.default_currency') %>
-      <%= f.text_field :default_currency %>
-    <% end %>
-  </div>
+  <%= f.field_container :default_currency do %>
+    <%= f.label I18n.t('spree.default_currency') %>
+    <%= f.select :default_currency,
+                 Spree::Config.available_currencies.map(&:iso_code),
+                 { include_blank: true },
+                 { class: 'custom-select fullwidth' } %>
+    <%= f.error_message_on :default_currency %>
+  <% end %>
 
   <div class="six columns">
     <%= f.field_container :url do %>
@@ -50,7 +52,10 @@
   </div>
 
   <div class="eight columns">
-    <%= image_tag @store.logo.url %>
+    <% if @store.logo.attached? %>
+      <%= image_tag @store.logo.url %>
+    <% end %>
+
     <%= f.field_container :logo do %>
       <%= f.label :logo, I18n.t('spree.logo') %><br />
       <%= f.file_field :logo %>
@@ -72,7 +77,9 @@
         <%= hidden_field_tag 'store[payment_method_ids][]', '' %>
       <% end %>
     </div>
+  </div>
 
+  <div class="row">
     <div class="omega six columns">
       <%= f.field_container :shipping_methods do %>
         <%= f.label :shipping_methods, I18n.t('spree.shipping_methods') %><br />

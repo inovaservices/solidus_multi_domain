@@ -6,7 +6,7 @@
   <% end %>
 </div>
 
-<p>
+<div class="field col-2">
   <%= f.label :name, I18n.t('spree.store') %> <span class="required">*</span><br />
-  <%= collection_select :taxonomy, :store_id, Spree::Store.all, :id, :name  %>
-</p>
+  <%= collection_select :taxonomy, :store_id, Spree::Store.all, :id, :name, {}, class: 'form-control'  %>
+</div>

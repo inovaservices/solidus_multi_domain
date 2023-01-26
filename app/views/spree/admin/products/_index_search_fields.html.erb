@@ -1,4 +1,6 @@
-<p>
-  <label><%= I18n.t('spree.store') %></label><br />
-  <%= f.select :stores_id_eq, Spree::Store.all.collect {|s| [s.name, s.id ] }, {:include_blank => true} %></p>
-</p>
+<div class="col-10">
+  <div class="field">
+    <label><%= I18n.t('spree.store') %></label><br />
+    <%= f.select :stores_id_eq, Spree::Store.all.collect {|s| [s.name, s.id ] }, { include_blank: true }, class: 'form-control' %>
+  </div>
+</div>
