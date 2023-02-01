@@ -14,11 +14,9 @@ module SolidusMultiDomain
 
           has_and_belongs_to_many :promotion_rules, class_name: 'Spree::Promotion::Rules::Store', join_table: 'spree_promotion_rules_stores', association_foreign_key: 'promotion_rule_id'
 
-          has_one_attached :logo
-          validates :logo, presence: true, if: -> { respond_to?(:logo_file_name) }
+          has_one_attached :logo, dependent: :purge_later
+          # validates :logo, allow_nil: true, if: -> { respond_to?(:logo_file_name) }
 
-          # validates_attachment_file_name :logo, matches: [/png\Z/i, /jpe?g\Z/i],
-          #                                       if: -> { respond_to?(:logo_file_name) }
         end
       end
 
